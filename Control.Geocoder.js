@@ -38,9 +38,10 @@
 		onAdd: function (map) {
 			var className = 'leaflet-control-geocoder',
 			    container = L.DomUtil.create('div', className),
-				icon = L.DomUtil.create('div', 'leaflet-control-geocoder-icon', container),
+				icon = this._icon = L.DomUtil.create('div', 'leaflet-control-geocoder-icon fa fa-search', container),
 			    form = this._form = L.DomUtil.create('form', className + '-form', container),
 			    input;
+			    icon.title = 'Search address';
 
 			this._map = map;
 			this._container = container;
@@ -146,13 +147,22 @@
 
 		_expand: function () {
 			L.DomUtil.addClass(this._container, 'leaflet-control-geocoder-expanded');
+			L.DomUtil.addClass(this._form, 'leaflet-control-display-inline');
+			L.DomUtil.removeClass(this._icon, 'fa-search');
+			L.DomUtil.addClass(this._icon, 'fa-times');
 			this._input.select();
 		},
 
 		_collapse: function () {
+			L.DomUtil.removeClass(this._form, 'leaflet-control-display-inline');
+			L.DomUtil.addClass(this._icon, 'fa-search');
+			L.DomUtil.removeClass(this._icon, 'fa-times');
+
 			this._container.className = this._container.className.replace(' leaflet-control-geocoder-expanded', '');
 			L.DomUtil.addClass(this._alts, 'leaflet-control-geocoder-alternatives-minimized');
 			L.DomUtil.removeClass(this._errorElement, 'leaflet-control-geocoder-error');
+
+			if (this._geocodeMarker) this._map.removeLayer(this._geocodeMarker);
 		},
 
 		_clearResults: function () {
