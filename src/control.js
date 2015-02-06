@@ -30,7 +30,7 @@
             this._map = map;
             this._container = container;
             icon.href = '#';
-            icon.innerHTML = '<div class="icon geocoder-icon icon-magnifying-glass"></div>';
+            icon.innerHTML = '<div class="icon geocoder-icon icon-geo-search"></div>';
             input = this._input = L.DomUtil.create('input', 'geocoder-input');
             input.type = 'text';
             input.placeholder = this.options.placeholder;
