@@ -24,13 +24,14 @@
         onAdd: function (map) {
             var className = 'leaflet-control-geocoder',
                 container = L.DomUtil.create('div', 'leaflet-bar leaflet-control ' + className),
-                icon = L.DomUtil.create('a', 'leaflet-control-geocoder-icon', container),
+                icon = L.DomUtil.create('a', 'geo-btn-geocoder', container),
                 input;
 
             this._map = map;
             this._container = container;
             icon.href = '#';
-            input = this._input = L.DomUtil.create('input');
+            icon.innerHTML = '<div class="icon geocoder-icon icon-magnifying-glass"></div>';
+            input = this._input = L.DomUtil.create('input', 'geocoder-input');
             input.type = 'text';
             input.placeholder = this.options.placeholder;
             new Autocomplete(input, this._geocodeResultSelected, this, {
@@ -110,10 +111,10 @@
         return new L.Control.Geocoder(options);
     };
 
-    require('./providers/nominatim');
-    require('./providers/google');
+    // require('./providers/nominatim');
+    // require('./providers/google');
     require('./providers/bing');
-    require('./providers/mapquest');
+    // require('./providers/mapquest');
 
     module.exports = L.Control.Geocoder;
 })();

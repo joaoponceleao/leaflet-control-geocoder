@@ -41,7 +41,7 @@
 			var rect = this._elem.getBoundingClientRect();
 			if (!this._container.parentElement) {
 				this._container.style.left = rect.left + 'px';
-				this._container.style.top = rect.bottom + 'px';
+				this._container.style.top = rect.bottom + 3 + 'px';
 				this._container.style.width = (rect.right - rect.left) + 'px';
 				document.body.appendChild(this._container);
 			}
